@@ -1,0 +1,236 @@
+import java.util.Comparator;
+import java.util.LinkedList;
+
+public class LinkedList_ {
+
+	public static void main(String[]args) {
+	LinkedList<String> list= new LinkedList<String>();  //create an empty linked list
+	
+	
+	list.add("first_element"); // add an element to list
+	printList(list);
+	
+	list.add("second_element");
+	printList(list);
+	
+	list.add("third_element");
+	printList(list);
+	
+	list.addFirst("first_first_element"); // add an element to top of the list.
+	printList(list);
+	
+	list.addLast("Last_element");//add an element to end of the list.
+	printList(list);
+	
+	list.add("Middle_element"); // if you add this element after addLast() it will be added to end of the list.
+	printList(list);
+	
+	list.add(1, "Add to first index"); //1 = index of list.
+	printList(list);
+	
+	
+	LinkedList<String> list2= new LinkedList<String>();  //create an empty linked list
+	list2.add("Addlist2_first_element");
+	list2.add("Addlist2_second_element");
+	list.addAll(list2);
+	printList(list); // add list2 to list , combine two list
+	
+	
+	LinkedList<String> list3= new LinkedList<String>();  //create an empty linked list
+	list3.add("Addlist3_first_element_to_second_index");
+	list3.add("Addlist3_second_element_to_second_index");
+	list.addAll(2, list3); // add list3 to second index of list
+	printList(list); // add list2 to list , combine two list
+
+	
+	list.clear(); // clear the list.
+	System.out.println("All elements were cleared");
+	printList(list);
+	
+	
+	System.out.println("New Elements were added.");
+	list.add("NewFirstElement");
+	list.add("NewSecondElement");
+	list.add("NewThirdElement");
+	printList(list);
+	
+	LinkedList<String> cloned_list  = new LinkedList<String>(list); //clone list 1. method
+	System.out.println("Coloned List1");
+	printList(cloned_list);
+	
+	LinkedList<String> cloned_list2  = new LinkedList<String>(); //clone list 2. method
+	cloned_list2.addAll(list); 
+	System.out.println("Coloned List2");
+	printList(cloned_list2);
+	
+	 LinkedList<String> cloned_list3 = (LinkedList) list.clone(); //clone list 3.method
+	 System.out.println("Coloned List3");
+	printList(cloned_list3);
+	
+	
+	if(list.contains("Hi")) { // returns true if "Hi" in the list.
+		System.out.println("this element is in the list");
+	}
+	else {
+		System.out.println("the element is not in the list");
+	}
+	
+	 LinkedList<String> list4=  new LinkedList<String>(); //clone list 3.method
+
+	list4.add("NewFirstElement");
+	list4.add("SomeElement");
+	
+	if(list.containsAll(list4)){ // returns true if all elements of list 4 is same for list// in this case no.
+		System.out.println("YES");
+	}
+	
+	else {
+		System.out.println("NO");
+	}
+	
+	// another example
+	if(list.containsAll(cloned_list)){ // returns true if all elements of cloned is same for list // in this case yes.
+		System.out.println("YES");
+	}
+	
+	else {
+		System.out.println("NO");
+	}
+	
+	
+	
+	
+	if(list.equals(cloned_list3)){ //same containsAll
+	
+		System.out.println("YES");
+	}
+	
+	else {
+		System.out.println("NO");
+	}
+	
+	
+	System.out.println("----------------");
+	System.out.println(list.element());//get first element of list.
+	
+	
+	
+	System.out.println("----------------");
+	System.out.println("the element in the first index of this list is: "+list.get(1)); //get element in the first index of list
+	
+	System.out.println("----------------");
+	System.out.println("the first element of this list is: " +list.getFirst()); //get first element of list. Same element()
+	
+	System.out.println("----------------");
+	System.out.println("the last element of this list is: " +list.getLast()); //get last element of list.
+	
+	System.out.println("----------------");
+	System.out.println("The index of NewSecondElement element is: " +list.indexOf("NewSecondElement")); //get index of specific element
+
+	
+	System.out.println("----------------");
+	if(list.isEmpty()) {
+		System.out.println("List is empty.");// returns true if list is empty.
+	}
+	
+	else {
+		System.out.println("List is not empty.");
+	}
+	
+	System.out.println("----------------");
+	System.out.println("New elements were added.");
+	list.add("55");
+	list.add("58");
+	list.add("63");
+	list.add("55");
+	list.add("43");
+	list.add("55");
+	list.add("63");
+	printList(list);
+	
+	System.out.println(list.lastIndexOf("55")); // returns last index of the specific element. In this case 55 was last seen 8. index 
+	System.out.println("----------------");
+
+	
+	list.offer("Offered Element"); // offer new element.(add new element)
+	printList(list);
+	
+	
+	list.offerFirst("Offered First Element"); // same addFirst()
+	list.offerLast("Offered Last Element"); // same addLast()
+	printList(list);
+	
+	
+	System.out.println("the first element of this list is: "+list.peek()); // get first element of the list
+	
+	System.out.println("the first element of this list is: "+list.peekFirst()); // get first element of the list
+	System.out.println("the last element of this list is: "+list.peekLast()); // get last element of the list
+	System.out.println("----------------");
+
+	printList(list); // BEFORE
+	list.poll();// removes first element of list
+	printList(list); //AFTER
+	
+	printList(list); // BEFORE
+	list.pollFirst(); //removes first element of list
+	list.pollLast(); //removes last element of list
+	printList(list); //AFTER
+	
+	list.pop(); //removes first element of list 
+	printList(list);
+	
+	list.push("Pushed Element"); // add first element of list 
+	printList(list);
+	
+	list.remove(); // remove first element from list. In this case first_element will be removed.
+	printList(list);
+	
+	list.remove(3); // remove the element of 3.index ; //63 was removed.
+	printList(list);
+	
+	list.remove("55"); // remove a specific element from list.// if there is two element with same value, remove the earliest index.
+	printList(list);
+
+	list.removeLastOccurrence("55"); // remove latest index of this element.
+	printList(list);
+	
+	list.removeFirstOccurrence("58"); //remove earliest index of this element.
+	printList(list);
+	
+	list.replaceAll(b -> b.toLowerCase()); // change the elements to lower case
+	printList(list);
+	
+	list.replaceAll(e ->  "new");
+	printList(list);  // change all elements 
+	
+	list.set(2, "set new"); // set a specific element to 2.index of the list.
+	printList(list);
+	
+	System.out.println("The size of the list is: " +list.size()); // return size of the list.
+	System.out.println("----------------");
+	
+	
+	list.sort(Comparator.reverseOrder()); // sort list elements -reverse of A-Z
+	printList(list);
+	
+	System.out.println(list.subList(2, 4)); // prints a sublist of the list from 2. index to 4. index
+	System.out.println("----------------");
+	
+	list.toArray(); // list to array
+
+	}
+
+	
+
+	
+	// print all elements of list.
+	public static void printList(LinkedList<String>list) {
+	for(String s: list) {
+		
+		System.out.println(s);
+		
+		
+	}
+	System.out.println("------------------");
+}
+
